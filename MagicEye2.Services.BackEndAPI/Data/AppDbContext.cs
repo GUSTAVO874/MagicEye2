@@ -23,6 +23,8 @@ namespace MagicEye2.Services.BackEndAPI.Data
         //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);//dejar esta línea para que luego funcione el Identity
+
             // Configuración de la relación uno a muchos entre VersionSecaf y Proceso
             modelBuilder.Entity<VersionSecaf>()
                 .HasMany(v => v.Procesos) // Una VersionSecaf tiene muchos Proceso
