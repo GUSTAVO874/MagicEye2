@@ -1,4 +1,5 @@
 ﻿using MagicEye2.Services.BackEndAPI.Models;
+using MagicEye2.Services.BackEndAPI.Models.Insumos;
 using Microsoft.EntityFrameworkCore;
 using static Azure.Core.HttpHeader;
 
@@ -12,6 +13,8 @@ namespace MagicEye2.Services.BackEndAPI.Data
         }
         public DbSet<VersionSecaf> VersionSecafs { get; set; }
         public DbSet<Proceso> Procesos {  get; set; }
+        public DbSet<Expediente> Expedientes { get; set; }
+        public DbSet<Validacion> Validacions { get; set; }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
@@ -28,6 +31,17 @@ namespace MagicEye2.Services.BackEndAPI.Data
 
             // No es necesario configurar la clave primaria si solo usas [Key] y nombres de propiedades convencionales
             // EF Core puede inferirlo automáticamente.
+
+            ////////////////////////
+            // Configuración uno a uno para Expediente y Validacion
+            modelBuilder.Entity<Expediente>()
+                .HasOne(e => e.Validacion)
+                .WithOne(v => v.Expediente)
+                .HasForeignKey<Validacion>(v => v.ExpedienteId);
+
+            // Asegurarse de que ValidacionId es una clave primaria en Validacion
+            modelBuilder.Entity<Validacion>()
+                .HasKey(v => v.ValidacionId);
         }
 
 
