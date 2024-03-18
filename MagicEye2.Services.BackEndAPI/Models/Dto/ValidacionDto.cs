@@ -1,9 +1,9 @@
-﻿namespace MagicEye2.Services.BackEndAPI.Models.Insumos
+﻿namespace MagicEye2.Services.BackEndAPI.Models.Dto
 {
-    public class Validacion
+    public class ValidacionDto
     {
         public int ValidacionId { get; set; }
-        public int ExpedienteId { get; set; }
+        public int? ExpedienteId { get; set; }
         public string NombreDto { get; set; }
         public int ConfidenceDto { get; set; }
         public bool RecognitionProcessOK { get; set; } = false;
@@ -32,6 +32,5 @@
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
         public string Observacion { get; set; }
-
     }
 }

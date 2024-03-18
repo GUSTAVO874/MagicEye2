@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEye2.Services.BackEndA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEye2.Web", "MagicEye2.Web\MagicEye2.Web.csproj", "{9DC337F6-B6E7-4605-A87F-66E748671027}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BASE", "BASE", "{84E3C505-4793-4EFD-84DD-5BAAF20010E3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
