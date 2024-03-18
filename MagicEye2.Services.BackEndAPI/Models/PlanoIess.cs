@@ -2,7 +2,7 @@
 
 namespace MagicEye2.Services.BackEndAPI.Models
 {
-    public class PlanoIessDto
+    public class PlanoIess
     {
         public int PlanoiessId { get; set; }
         public int VersionId { get; set; }
@@ -10,10 +10,12 @@ namespace MagicEye2.Services.BackEndAPI.Models
         public VersionSecaf VersionSecaf { get; set; }
         
         public string C1CodEspec { get; set; } = "0000000316";//imagenología
-        public int C2Numeración { get; set; }
-        public DateTime C3FechaAtencion { get; set; } //Entrega
-        public string C4TipoSeguro { get; set; } //Validación
-        public int C5Identificacion { get; set; } //Validación
+        public int C2Numeración { get; set; } //cada paciente cronológicamente
+
+        //Entrega, es mano escrita, si >78 formatear y guardar
+        public DateTime C3FechaAtencion { get; set; } 
+        public string C4TipoSeguro { get; set; } //Validación, match
+        public int C5Identificacion { get; set; } //Validación, cédula
         public string C6Nombres { get; set; } //Validación
         public string C7Genero { get; set; } //Validación
         public DateTime C8FechaNacimiento { get; set; } //053
@@ -23,7 +25,7 @@ namespace MagicEye2.Services.BackEndAPI.Models
         
         //consulta a archivo según cod tarifario, además si hay insumos 
         //deben listarse aquí
-        public string C12Descripcion { get; set; } 
+        public string C12Descripcion { get; set; }  //Validacion, match
         public string C13CieDiagnPrincipal { get; set; } //Validación
         public string C14CieDiagn1 { get; set; } //mismo de c12
         public string C15CieDiagn2 { get; set; } //mismo de c12
