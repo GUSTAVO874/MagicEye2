@@ -4,6 +4,7 @@ using MagicEye2.Services.BackEndAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MagicEye2.Services.BackEndAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240318214618_migracion2")]
+    partial class migracion2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,7 +33,7 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ExpedienteId"));
 
-                    b.Property<int?>("CoberturaId")
+                    b.Property<int>("CoberturaId")
                         .HasColumnType("int");
 
                     b.Property<int?>("CoberturaMadre")
@@ -39,34 +42,34 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
                     b.Property<int?>("CoberturaPadre")
                         .HasColumnType("int");
 
-                    b.Property<bool?>("DtosImprescindiblesOK")
+                    b.Property<bool>("DtosImprescindiblesOK")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("EntregaId")
+                    b.Property<int>("EntregaId")
                         .HasColumnType("int");
 
-                    b.Property<bool?>("ExpedienteRecognitionOK")
+                    b.Property<bool>("ExpedienteRecognitionOK")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("Hcu053Id")
+                    b.Property<int>("Hcu053Id")
                         .HasColumnType("int");
 
-                    b.Property<bool?>("Ignorar")
+                    b.Property<bool>("Ignorar")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("NombreExpediente")
+                    b.Property<int>("NombreExpediente")
                         .HasColumnType("int");
 
-                    b.Property<int?>("NumerodeDocumentos")
+                    b.Property<int>("NumerodeDocumentos")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProcesoId")
+                    b.Property<int>("ProcesoId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ResultadoId")
+                    b.Property<int>("ResultadoId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ValidacionId")
+                    b.Property<int>("ValidacionId")
                         .HasColumnType("int");
 
                     b.HasKey("ExpedienteId");
@@ -83,97 +86,106 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ValidacionId"));
 
                     b.Property<string>("C11CodTarifario")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("C11CodTarifarioConfidence")
+                    b.Property<int>("C11CodTarifarioConfidence")
                         .HasColumnType("int");
 
                     b.Property<string>("C13Cie")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("C13CieConfidence")
+                    b.Property<int>("C13CieConfidence")
                         .HasColumnType("int");
 
                     b.Property<string>("C4TipoSeguro")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("C4TipoSeguroConfidence")
+                    b.Property<int>("C4TipoSeguroConfidence")
                         .HasColumnType("int");
 
-                    b.Property<int?>("C5Identificacion")
+                    b.Property<int>("C5Identificacion")
                         .HasColumnType("int");
 
-                    b.Property<int?>("C5IdentificacionConfidence")
+                    b.Property<int>("C5IdentificacionConfidence")
                         .HasColumnType("int");
 
                     b.Property<string>("C6Nombres")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("C6NombresConfidence")
+                    b.Property<int>("C6NombresConfidence")
                         .HasColumnType("int");
 
                     b.Property<string>("C7Genero")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("C7GeneroConfidence")
+                    b.Property<int>("C7GeneroConfidence")
                         .HasColumnType("int");
 
-                    b.Property<int?>("C9Edad")
+                    b.Property<int>("C9Edad")
                         .HasColumnType("int");
 
-                    b.Property<int?>("C9EdadConfidence")
+                    b.Property<int>("C9EdadConfidence")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ConfidenceDto")
+                    b.Property<int>("ConfidenceDto")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ExpedienteId")
+                    b.Property<int>("ExpedienteId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("FechaFin")
+                    b.Property<DateTime>("FechaFin")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("FechaInicio")
+                    b.Property<DateTime>("FechaInicio")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("NombreDto")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("NumSecDerivac")
+                    b.Property<int>("NumSecDerivac")
                         .HasColumnType("int");
 
-                    b.Property<int?>("NumSecDerivacConfidence")
+                    b.Property<int>("NumSecDerivacConfidence")
                         .HasColumnType("int");
 
                     b.Property<string>("Observacion")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("RecognitionProcessOK")
+                    b.Property<bool>("RecognitionProcessOK")
                         .HasColumnType("bit");
 
                     b.Property<string>("TipoAfiliacion")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TipoAfiliacionConfidence")
+                    b.Property<int>("TipoAfiliacionConfidence")
                         .HasColumnType("int");
 
                     b.Property<string>("Unidad_A_queDerivan")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Unidad_A_queDerivanConfidence")
+                    b.Property<int>("Unidad_A_queDerivanConfidence")
                         .HasColumnType("int");
 
                     b.Property<string>("UnidadqueDeriva")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UnidadqueDerivaConfidence")
+                    b.Property<int>("UnidadqueDerivaConfidence")
                         .HasColumnType("int");
 
                     b.HasKey("ValidacionId");
 
                     b.HasIndex("ExpedienteId")
-                        .IsUnique()
-                        .HasFilter("[ExpedienteId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Validacions");
                 });
@@ -224,7 +236,9 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
                 {
                     b.HasOne("MagicEye2.Services.BackEndAPI.Models.Expediente", "Expediente")
                         .WithOne("Validacion")
-                        .HasForeignKey("MagicEye2.Services.BackEndAPI.Models.Insumos.Validacion", "ExpedienteId");
+                        .HasForeignKey("MagicEye2.Services.BackEndAPI.Models.Insumos.Validacion", "ExpedienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Expediente");
                 });
