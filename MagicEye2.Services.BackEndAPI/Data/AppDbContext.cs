@@ -11,11 +11,25 @@ namespace MagicEye2.Services.BackEndAPI.Data
 
         }
         public DbSet<VersionSecaf> VersionSecafs { get; set; }
-        public DbSet<Proceso> Procesos {  get; set; }    
+        public DbSet<Proceso> Procesos {  get; set; }
 
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    //base.OnModelCreating(modelBuilder);
+
+        //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            // Configuración de la relación uno a muchos entre VersionSecaf y Proceso
+            modelBuilder.Entity<VersionSecaf>()
+                .HasMany(v => v.Procesos) // Una VersionSecaf tiene muchos Proceso
+                .WithOne(p => p.VersionSecaf) // Cada Proceso tiene una VersionSecaf
+                .HasForeignKey(p => p.VersionId); // La FK en Proceso es VersionId
+
+            // No es necesario configurar la clave primaria si solo usas [Key] y nombres de propiedades convencionales
+            // EF Core puede inferirlo automáticamente.
         }
+
+
     }
 }
