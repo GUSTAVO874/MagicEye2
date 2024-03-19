@@ -77,7 +77,10 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
             modelBuilder.Entity("MagicEye2.Services.BackEndAPI.Models.Insumos.Cobertura", b =>
                 {
                     b.Property<int>("CoberturaId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CoberturaId"));
 
                     b.Property<int?>("ConfidenceDto")
                         .HasColumnType("int");
@@ -101,6 +104,9 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("CoberturaId");
+
+                    b.HasIndex("ExpedienteId")
+                        .IsUnique();
 
                     b.ToTable("Cobertura");
                 });
@@ -254,7 +260,7 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
                 {
                     b.HasOne("MagicEye2.Services.BackEndAPI.Models.Expediente", "Expediente")
                         .WithOne("Cobertura")
-                        .HasForeignKey("MagicEye2.Services.BackEndAPI.Models.Insumos.Cobertura", "CoberturaId")
+                        .HasForeignKey("MagicEye2.Services.BackEndAPI.Models.Insumos.Cobertura", "ExpedienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

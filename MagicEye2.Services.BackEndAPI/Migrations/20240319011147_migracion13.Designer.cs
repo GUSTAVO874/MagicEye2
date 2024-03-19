@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MagicEye2.Services.BackEndAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240318215548_migracion3")]
-    partial class migracion3
+    [Migration("20240319011147_migracion13")]
+    partial class migracion13
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,6 +77,43 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
                     b.ToTable("Expedientes");
                 });
 
+            modelBuilder.Entity("MagicEye2.Services.BackEndAPI.Models.Insumos.Cobertura", b =>
+                {
+                    b.Property<int>("CoberturaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CoberturaId"));
+
+                    b.Property<int?>("ConfidenceDto")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExpedienteId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Identificacion")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdentificacionConfidence")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NombreDto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombres")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("RecognitionProcessOK")
+                        .HasColumnType("bit");
+
+                    b.HasKey("CoberturaId");
+
+                    b.HasIndex("ExpedienteId")
+                        .IsUnique();
+
+                    b.ToTable("Cobertura");
+                });
+
             modelBuilder.Entity("MagicEye2.Services.BackEndAPI.Models.Insumos.Validacion", b =>
                 {
                     b.Property<int>("ValidacionId")
@@ -130,7 +167,7 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
                     b.Property<int?>("ConfidenceDto")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ExpedienteId")
+                    b.Property<int>("ExpedienteId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("FechaFin")
@@ -175,8 +212,7 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
                     b.HasKey("ValidacionId");
 
                     b.HasIndex("ExpedienteId")
-                        .IsUnique()
-                        .HasFilter("[ExpedienteId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Validacions");
                 });
@@ -223,11 +259,24 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
                     b.ToTable("VersionSecafs");
                 });
 
+            modelBuilder.Entity("MagicEye2.Services.BackEndAPI.Models.Insumos.Cobertura", b =>
+                {
+                    b.HasOne("MagicEye2.Services.BackEndAPI.Models.Expediente", "Expediente")
+                        .WithOne("Cobertura")
+                        .HasForeignKey("MagicEye2.Services.BackEndAPI.Models.Insumos.Cobertura", "ExpedienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Expediente");
+                });
+
             modelBuilder.Entity("MagicEye2.Services.BackEndAPI.Models.Insumos.Validacion", b =>
                 {
                     b.HasOne("MagicEye2.Services.BackEndAPI.Models.Expediente", "Expediente")
                         .WithOne("Validacion")
-                        .HasForeignKey("MagicEye2.Services.BackEndAPI.Models.Insumos.Validacion", "ExpedienteId");
+                        .HasForeignKey("MagicEye2.Services.BackEndAPI.Models.Insumos.Validacion", "ExpedienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Expediente");
                 });
@@ -245,6 +294,9 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
 
             modelBuilder.Entity("MagicEye2.Services.BackEndAPI.Models.Expediente", b =>
                 {
+                    b.Navigation("Cobertura")
+                        .IsRequired();
+
                     b.Navigation("Validacion")
                         .IsRequired();
                 });
