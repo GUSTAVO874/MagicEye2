@@ -36,14 +36,30 @@ namespace MagicEye2.Services.BackEndAPI.Data
 
             ////////////////////////
             // Configuración uno a uno para Expediente y Validacion
-            modelBuilder.Entity<Expediente>()
-                .HasOne(e => e.Validacion)
-                .WithOne(v => v.Expediente)
-                .HasForeignKey<Validacion>(v => v.ExpedienteId);
+            //modelBuilder.Entity<Expediente>()
+            //    .HasOne(e => e.Validacion)
+            //    .WithOne(v => v.Expediente)
+            //    .HasForeignKey<Validacion>(v => v.ExpedienteId);
 
-            // Asegurarse de que ValidacionId es una clave primaria en Validacion
-            modelBuilder.Entity<Validacion>()
-                .HasKey(v => v.ValidacionId);
+            //// Asegurarse de que ValidacionId es una clave primaria en Validacion
+            //modelBuilder.Entity<Validacion>()
+            //    .HasKey(v => v.ValidacionId);
+
+            //Configuración uno a uno para Expediente y Validacion
+            modelBuilder.Entity<Expediente>()
+            .HasOne(e => e.Validacion)
+            .WithOne(v => v.Expediente)
+            .HasForeignKey<Validacion>(v => v.ExpedienteId)
+            .OnDelete(DeleteBehavior.Cascade); // Asegura la eliminación en cascada
+
+            //Configuración uno a uno para Expediente y Cobertura
+            modelBuilder.Entity<Expediente>()
+            .HasOne(e => e.Cobertura)
+            .WithOne(v => v.Expediente)
+            .HasForeignKey<Cobertura>(v => v.CoberturaId)
+            .OnDelete(DeleteBehavior.Cascade); // Asegura la eliminación en cascada
+
+
         }
 
 

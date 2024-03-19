@@ -8,13 +8,20 @@ namespace MagicEye2.Services.BackEndAPI.Models
         [Key]
         public int ExpedienteId { get; set; }
         public int? ValidacionId { get; set; } // FK.
-
+        
         // Navegación hacia Validacion. 
         public Validacion Validacion { get; set; }
+        
+        public int? CoberturaId { get; set; } //FK.
+        
+        //Navegación hacia Cobertura
+        public Cobertura Cobertura {  get; set; }
+
+
+
 
 
         public int? ProcesoId { get; set; } // Suponiendo que esto es otra relación o propiedad
-        public int? CoberturaId { get; set; }
         public int? CoberturaMadre {  get; set; }
         public int? CoberturaPadre { get; set; }
         public int? Hcu053Id {  get; set; }
