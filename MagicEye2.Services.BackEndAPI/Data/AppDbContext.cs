@@ -15,6 +15,7 @@ namespace MagicEye2.Services.BackEndAPI.Data
         public DbSet<Proceso> Procesos { get; set; }
         public DbSet<Expediente> Expedientes { get; set; }
         public DbSet<Validacion> Validacions { get; set; }
+        public DbSet<Cobertura> Coberturas { get; set; }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
