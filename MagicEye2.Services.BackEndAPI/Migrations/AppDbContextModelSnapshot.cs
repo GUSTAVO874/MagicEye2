@@ -127,7 +127,11 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
                     b.Property<int?>("ConfidenceDto")
                         .HasColumnType("int");
 
+<<<<<<< HEAD
                     b.Property<int>("ExpedienteId")
+=======
+                    b.Property<int?>("ExpedienteId")
+>>>>>>> b5b9e8fc5a86c84104a98e989013429c1cfa4c63
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("FechaFin")
@@ -172,7 +176,12 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
                     b.HasKey("ValidacionId");
 
                     b.HasIndex("ExpedienteId")
+<<<<<<< HEAD
                         .IsUnique();
+=======
+                        .IsUnique()
+                        .HasFilter("[ExpedienteId] IS NOT NULL");
+>>>>>>> b5b9e8fc5a86c84104a98e989013429c1cfa4c63
 
                     b.ToTable("Validacions");
                 });
@@ -223,9 +232,13 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
                 {
                     b.HasOne("MagicEye2.Services.BackEndAPI.Models.Expediente", "Expediente")
                         .WithOne("Validacion")
+<<<<<<< HEAD
                         .HasForeignKey("MagicEye2.Services.BackEndAPI.Models.Insumos.Validacion", "ExpedienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+=======
+                        .HasForeignKey("MagicEye2.Services.BackEndAPI.Models.Insumos.Validacion", "ExpedienteId");
+>>>>>>> b5b9e8fc5a86c84104a98e989013429c1cfa4c63
 
                     b.Navigation("Expediente");
                 });
