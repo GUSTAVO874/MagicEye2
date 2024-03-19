@@ -57,7 +57,7 @@ namespace MagicEye2.Services.BackEndAPI.Data
             .HasOne(e => e.Cobertura)
             .WithOne(v => v.Expediente)
             .HasForeignKey<Cobertura>(v => v.CoberturaId)
-            .OnDelete(DeleteBehavior.Cascade); // Asegura la eliminación en cascada
+            .OnDelete(DeleteBehavior.Cascade); // Asegura la eliminación en cascada.
 
 
         }
