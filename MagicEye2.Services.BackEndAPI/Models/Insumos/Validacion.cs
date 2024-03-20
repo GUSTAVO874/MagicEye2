@@ -7,6 +7,7 @@ namespace MagicEye2.Services.BackEndAPI.Models.Insumos
     {
         [Key]
         public int ValidacionId { get; set; }
+        
         public int ExpedienteId { get; set; } // FK .
 
         [ForeignKey("ExpedienteId")]

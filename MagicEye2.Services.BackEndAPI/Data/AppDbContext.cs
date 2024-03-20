@@ -32,32 +32,47 @@ namespace MagicEye2.Services.BackEndAPI.Data
                 .WithOne(p => p.VersionSecaf) // Cada Proceso tiene una VersionSecaf
                 .HasForeignKey(p => p.VersionId); // La FK en Proceso es VersionId
 
-            // No es necesario configurar la clave primaria si solo usas [Key] y nombres de propiedades convencionales
-            // EF Core puede inferirlo automáticamente.
+            // Configuración de la relación uno a muchos entre Proceso y Expediente
+            modelBuilder.Entity<Proceso>()
+                .HasMany(v => v.Expedientes) // Un Proceso tiene muchos Expedientes
+                .WithOne(p => p.Proceso) // Cada Expediente pertenece a un Proceso
+                .HasForeignKey(p => p.ProcesoId); // La FK en Expediente es ProcesoId
 
-            ////////////////////////
-            // Configuración uno a uno para Expediente y Validacion
-            //modelBuilder.Entity<Expediente>()
-            //    .HasOne(e => e.Validacion)
-            //    .WithOne(v => v.Expediente)
-            //    .HasForeignKey<Validacion>(v => v.ExpedienteId);
-
-            //// Asegurarse de que ValidacionId es una clave primaria en Validacion
-            //modelBuilder.Entity<Validacion>()
-            //    .HasKey(v => v.ValidacionId);
-
-            //Configuración uno a uno para Expediente y Validacion
-            modelBuilder.Entity<Expediente>()
-            .HasOne(e => e.Validacion)
-            .WithOne(v => v.Expediente)
-            .HasForeignKey<Validacion>(v => v.ExpedienteId)
-            .OnDelete(DeleteBehavior.Cascade); // Asegura la eliminación en cascada
+            
 
             //Configuración uno a uno para Expediente y Cobertura
             modelBuilder.Entity<Expediente>()
             .HasOne(e => e.Cobertura)
             .WithOne(v => v.Expediente)
             .HasForeignKey<Cobertura>(v => v.ExpedienteId)
+            .OnDelete(DeleteBehavior.Cascade); // Asegura la eliminación en cascada
+
+            //Configuración uno a uno para Expediente y Entrega
+            modelBuilder.Entity<Expediente>()
+            .HasOne(e => e.Entrega)
+            .WithOne(v => v.Expediente)
+            .HasForeignKey<Entrega>(v => v.ExpedienteId)
+            .OnDelete(DeleteBehavior.Cascade); // Asegura la eliminación en cascada
+
+            //Configuración uno a uno para Expediente y Hcu053
+            modelBuilder.Entity<Expediente>()
+            .HasOne(e => e.Hcu053)
+            .WithOne(v => v.Expediente)
+            .HasForeignKey<Hcu053>(v => v.ExpedienteId)
+            .OnDelete(DeleteBehavior.Cascade); // Asegura la eliminación en cascada
+
+            //Configuración uno a uno para Expediente y Entrega
+            modelBuilder.Entity<Expediente>()
+            .HasOne(e => e.Resultado)
+            .WithOne(v => v.Expediente)
+            .HasForeignKey<Resultado>(v => v.ExpedienteId)
+            .OnDelete(DeleteBehavior.Cascade); // Asegura la eliminación en cascada
+
+            //Configuración uno a uno para Expediente y Validacion
+            modelBuilder.Entity<Expediente>()
+            .HasOne(e => e.Validacion)
+            .WithOne(v => v.Expediente)
+            .HasForeignKey<Validacion>(v => v.ExpedienteId)
             .OnDelete(DeleteBehavior.Cascade); // Asegura la eliminación en cascada
 
 

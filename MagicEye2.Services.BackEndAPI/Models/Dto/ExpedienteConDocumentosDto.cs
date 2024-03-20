@@ -12,7 +12,7 @@
         //public string ValidacionPropiedad2 { get; set; }
         // ...
 
-        // Propiedades de Cobertura
+        // Propiedades de Cobertura.
         public bool RecognitionProcessOK { get; set; }
         //public string CoberturaPropiedad2 { get; set; }
     }

@@ -1,9 +1,16 @@
-﻿namespace MagicEye2.Services.BackEndAPI.Models.Insumos
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MagicEye2.Services.BackEndAPI.Models.Insumos
 {
     public class Hcu053
     {
         public int Hcu53Id { get; set; }
-        public int? ExpedienteId { get; set; }
+        
+        public int ExpedienteId { get; set; } // FK 
+
+        [ForeignKey("ExpedienteId")]
+        public Expediente Expediente { get; set; }
+
         public string NombreDto { get; set; }
         public int ConfidenceDto { get; set; }
         public bool RecognitionProcessOK { get; set; } = false;
