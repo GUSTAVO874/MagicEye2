@@ -41,7 +41,7 @@ namespace MagicEye2.Services.BackEndAPI.Models
         public Hcu053 Hcu053 { get; set; }
 
         //Resultado
-        public Resultado ResultadoId { get; set; } //FK
+        public int? ResultadoId { get; set; } //FK
 
         //Navegación hacia Resultado
         public Resultado Resultado { get; set; }
