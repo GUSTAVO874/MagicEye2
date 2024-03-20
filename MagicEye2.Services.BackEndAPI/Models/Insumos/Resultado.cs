@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MagicEye2.Services.BackEndAPI.Models.Insumos
 {
     public class Resultado
     {
+        [Key]
         public int ResultadoId { get; set; }
 
         public int ExpedienteId { get; set; } // FK 

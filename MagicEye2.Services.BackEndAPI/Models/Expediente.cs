@@ -15,6 +15,7 @@ namespace MagicEye2.Services.BackEndAPI.Models
         [ForeignKey("ProcesoId")]
         public Proceso Proceso { get; set; }
 
+
         //Validación
         public int? ValidacionId { get; set; } // FK.
 

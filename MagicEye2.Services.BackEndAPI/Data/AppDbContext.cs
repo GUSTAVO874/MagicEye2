@@ -14,14 +14,14 @@ namespace MagicEye2.Services.BackEndAPI.Data
         public DbSet<VersionSecaf> VersionSecafs { get; set; }
         public DbSet<Proceso> Procesos { get; set; }
         public DbSet<Expediente> Expedientes { get; set; }
-        public DbSet<Validacion> Validacions { get; set; }
+
         public DbSet<Cobertura> Coberturas { get; set; }
-
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    //base.OnModelCreating(modelBuilder);
-
-        //}
+        public DbSet<Entrega> Entregas { get; set; }
+        public DbSet<Hcu053> Hcu053s { get; set; }
+        public DbSet<Resultado> Resultados { get; set; }
+        public DbSet<Validacion> Validacions { get; set; }
+        
+                
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);//dejar esta línea para que luego funcione el Identity
@@ -61,7 +61,7 @@ namespace MagicEye2.Services.BackEndAPI.Data
             .HasForeignKey<Hcu053>(v => v.ExpedienteId)
             .OnDelete(DeleteBehavior.Cascade); // Asegura la eliminación en cascada
 
-            //Configuración uno a uno para Expediente y Entrega
+            //Configuración uno a uno para Expediente y Resultado
             modelBuilder.Entity<Expediente>()
             .HasOne(e => e.Resultado)
             .WithOne(v => v.Expediente)

@@ -71,7 +71,7 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
 
                     b.HasKey("ExpedienteId");
 
-                    b.ToTable("Expedientes");
+                    b.ToTable("Expedientes", (string)null);
                 });
 
             modelBuilder.Entity("MagicEye2.Services.BackEndAPI.Models.Insumos.Cobertura", b =>
@@ -108,7 +108,7 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
                     b.HasIndex("ExpedienteId")
                         .IsUnique();
 
-                    b.ToTable("Coberturas");
+                    b.ToTable("Coberturas", (string)null);
                 });
 
             modelBuilder.Entity("MagicEye2.Services.BackEndAPI.Models.Insumos.Validacion", b =>
@@ -211,7 +211,7 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
                     b.HasIndex("ExpedienteId")
                         .IsUnique();
 
-                    b.ToTable("Validacions");
+                    b.ToTable("Validacions", (string)null);
                 });
 
             modelBuilder.Entity("MagicEye2.Services.BackEndAPI.Models.Proceso", b =>
@@ -236,7 +236,7 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
 
                     b.HasIndex("VersionId");
 
-                    b.ToTable("Procesos");
+                    b.ToTable("Procesos", (string)null);
                 });
 
             modelBuilder.Entity("MagicEye2.Services.BackEndAPI.Models.VersionSecaf", b =>
@@ -253,7 +253,7 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
 
                     b.HasKey("VersionId");
 
-                    b.ToTable("VersionSecafs");
+                    b.ToTable("VersionSecafs", (string)null);
                 });
 
             modelBuilder.Entity("MagicEye2.Services.BackEndAPI.Models.Insumos.Cobertura", b =>
