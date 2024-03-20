@@ -4,6 +4,7 @@ using MagicEye2.Services.BackEndAPI.Models.Dto;
 using MagicEye2.Services.BackEndAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MagicEye2.Services.BackEndAPI.Models.Insumos;
 
 namespace MagicEye2.Services.BackEndAPI.Controllers
 {
@@ -24,31 +25,39 @@ namespace MagicEye2.Services.BackEndAPI.Controllers
         //public async Task<IActionResult> Post([FromBody] CoberturaDto coberturaDto, EntregaDto entregaDto,
         //    Hcu053Dto hcu053Dto, ResultadoDto resultadoDto, ValidacionDto validacionDto,
         //    ExpedienteDto expedienteDto)
-        public async Task<IActionResult> Post([FromBody] ExpedienteDto expedienteDto)
+        public async Task<ResponseDto> Post([FromBody] 
+            ExpedienteDto expedienteDto)
         {
-            Expediente obj = _mapper.Map<Expediente>(expedienteDto);
-            _db.Expedientes.Add(obj);
-            await _db.SaveChangesAsync();
-            //_response.Result = _mapper.Map<ExpedienteDto>(obj);
-            return Ok(_response);
-            
-            //using (var transaction = _db.Database.BeginTransaction())
-            //{
-
-            //try
-            //{
-            //    Expediente obj = _mapper.Map<Expediente>(expedienteDto);
+            //Expediente obj = _mapper.Map<Expediente>(expedienteDto);
             //_db.Expedientes.Add(obj);
             //await _db.SaveChangesAsync();
-            //    _response.Result = _mapper.Map<ExpedienteDto>(obj);
-            //}
-            //catch (Exception ex)
-            //{
-            //    await transaction.RollbackAsync();
-            //    // Aquí se debería hacer un log del error.
-            //    return StatusCode(500, "Internal server error");
-            //}
-            //}
+            //_response.Result = _mapper.Map<ExpedienteDto>(obj);
+
+            //return _response;
+
+            using (var transaction = _db.Database.BeginTransaction())
+            {
+
+                try
+                {
+                    Expediente obj = _mapper.Map<Expediente>(expedienteDto);
+                    _db.Expedientes.Add(obj);
+                    await _db.SaveChangesAsync();
+                    _response.Result = _mapper.Map<ExpedienteDto>(obj);
+
+                    //Validacion objv = _mapper.Map<Validacion>(validacionDto);
+                    //_db.Validacions.Add(objv);
+                    //await _db.SaveChangesAsync();
+                    //_response.Result = _mapper.Map<ValidacionDto>(objv);
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    // Aquí se debería hacer un log del error.
+                    //return StatusCode(500, "Internal server error");
+                }
+                return _response;
+            }
         }
     }
 }
