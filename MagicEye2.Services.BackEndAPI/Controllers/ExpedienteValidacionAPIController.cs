@@ -25,49 +25,7 @@ namespace MagicEye2.Services.BackEndAPI.Controllers
                 return BadRequest();
             }
 
-            //using (var transaction = _db.Database.BeginTransaction())
-            //{
-            //    try
-            //    {
-            //        var expediente = new Expediente
-            //        {
-            //            // Set properties from DTO
-            //            DtosImprescindiblesOK = true,
-            //        };
-
-            //        _db.Expedientes.Add(expediente);
-            //        await _db.SaveChangesAsync();
-
-            //        var validacion = new Validacion
-            //        {
-            //            ExpedienteId = expediente.ExpedienteId,
-            //            // Set other properties from DTO
-            //            NombreDto = "asdf",
-            //        };
-
-            //        _db.Validacions.Add(validacion);
-
-            //        var cobertura = new Cobertura
-            //        {
-            //            ExpedienteId = expediente.ExpedienteId,
-            //            // Set other properties from DTO
-            //            RecognitionProcessOK = true,
-            //        };
-
-            //        _db.Coberturas.Add(cobertura);
-
-            //        await _db.SaveChangesAsync();
-            //        await transaction.CommitAsync();
-
-            //        return Ok(new { expediente.ExpedienteId });
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        await transaction.RollbackAsync();
-            //        // Log the exception (ex)
-            //        return StatusCode(500, "Internal server error");
-            //    }
-            //}
+            
             using (var transaction = _db.Database.BeginTransaction())
             {
                 try
@@ -75,7 +33,7 @@ namespace MagicEye2.Services.BackEndAPI.Controllers
                     var expediente = new Expediente
                     {
                         // Inicializa las propiedades del Expediente desde el DTO
-                        DtosImprescindiblesOK = true,
+                        DtosImprescindiblesOK = expedienteDto.DtosImprescindiblesOK,
                     };
 
                     _db.Expedientes.Add(expediente);
@@ -85,7 +43,7 @@ namespace MagicEye2.Services.BackEndAPI.Controllers
                     {
                         ExpedienteId = expediente.ExpedienteId,
                         // Inicializa las demás propiedades de Validacion desde el DTO
-                        NombreDto = "asdf",
+                        NombreDto = expedienteDto.NombreDto,
                     };
 
                     _db.Validacions.Add(validacion);
@@ -94,7 +52,7 @@ namespace MagicEye2.Services.BackEndAPI.Controllers
                     {
                         ExpedienteId = expediente.ExpedienteId,
                         // Inicializa las demás propiedades de Cobertura desde el DTO
-                        RecognitionProcessOK = true,
+                        RecognitionProcessOK = expedienteDto.RecognitionProcessOK,
                     };
 
                     _db.Coberturas.Add(cobertura);
