@@ -18,6 +18,6 @@ namespace MagicEye2.Services.BackEndAPI.Models
         public ICollection<Expediente> Expedientes { get; set; }
 
         public string MesAnioProceso { get; set; }
-        public bool ExpedientesOrdYNumeradosOK { get; set; }
+        public bool? ExpedientesOrdYNumeradosOK { get; set; }
     }
 }

@@ -33,6 +33,7 @@ namespace MagicEye2.Services.BackEndAPI.Controllers
                     var expediente = new Expediente
                     {
                         // Inicializa las propiedades del Expediente desde el DTO
+                        ProcesoId = expedienteDto.ProcesoId,
                         DtosImprescindiblesOK = expedienteDto.DtosImprescindiblesOK,
                     };
 

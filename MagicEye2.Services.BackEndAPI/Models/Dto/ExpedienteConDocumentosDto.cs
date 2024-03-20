@@ -4,6 +4,7 @@
     {
         // Propiedades de Expediente
         public bool DtosImprescindiblesOK { get; set; }
+        public int ProcesoId {  get; set; }
         //public string Propiedad2 { get; set; }
         // ...
 
