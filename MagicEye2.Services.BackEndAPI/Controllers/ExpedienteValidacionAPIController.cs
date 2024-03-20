@@ -4,6 +4,7 @@ using MagicEye2.Services.BackEndAPI.Models;
 using MagicEye2.Services.BackEndAPI.Models.Dto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 
 namespace MagicEye2.Services.BackEndAPI.Controllers
 {
@@ -12,9 +13,13 @@ namespace MagicEye2.Services.BackEndAPI.Controllers
     public class ExpedienteValidacionAPIController : ControllerBase
     {
         private readonly AppDbContext _db;
-        public ExpedienteValidacionAPIController(AppDbContext db) 
+        private ResponseDto _response;
+        private IMapper _mapper;
+        public ExpedienteValidacionAPIController(AppDbContext db, IMapper mapper) 
         { 
             _db = db;
+            _mapper = mapper;
+            _response = new ResponseDto();
         }
         
         [HttpPost]
