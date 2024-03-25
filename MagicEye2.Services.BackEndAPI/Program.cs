@@ -23,11 +23,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<FileService>();
+builder.Services.AddSingleton<FileService>();//funciona pero no lo uso
 
-builder.Services.AddTransient<IAlmacenadorArchivos, AlmacenadorArchivos>();
-
-builder.Services.AddTransient<ICentralStorage, CentralStorage>();
+builder.Services.AddTransient<IAlmacenadorArchivos, AlmacenadorArchivos>();//funciona pero no lo uso
+ 
+builder.Services.AddTransient<ICentralStorage, CentralStorage>(); //funcionando
 
 var app = builder.Build();
 

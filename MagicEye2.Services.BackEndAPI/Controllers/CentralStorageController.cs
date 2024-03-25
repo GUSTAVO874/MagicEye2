@@ -22,5 +22,11 @@ namespace MagicEye2.Services.BackEndAPI.Controllers
             var result = await _storage.ListAllBlobs();
             return Ok(result);
         }
+        [HttpPost]
+        public async Task<IActionResult> UploadFile(IFormFile file) 
+        {
+            var result = await _storage.Upload(file);
+            return Ok(result);
+        }
     }
 }
