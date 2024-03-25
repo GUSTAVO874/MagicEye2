@@ -1,5 +1,6 @@
 ﻿
 using Azure.Storage.Blobs;
+using MagicEye2.Services.BackEndAPI.Models.Dto;
 
 namespace MagicEye2.Services.BackEndAPI.Helpers
 {
@@ -17,14 +18,15 @@ namespace MagicEye2.Services.BackEndAPI.Helpers
 
         public async Task<string> GuardarArchivo(byte[] contenido, string extension, string nombreContenedor)
         {
+
             var cliente = new BlobContainerClient(connectionString, nombreContenedor);
             await cliente.CreateIfNotExistsAsync();
             cliente.SetAccessPolicy(Azure.Storage.Blobs.Models.PublicAccessType.Blob);
 
             var archivoNombre = "A_ENTREGA";
             var blob = cliente.GetBlobClient(archivoNombre);
-            using (var ms = new MemoryStream(contenido)) 
-            { 
+            using (var ms = new MemoryStream(contenido))
+            {
                 await blob.UploadAsync(ms);
             }
             return blob.Uri.ToString();

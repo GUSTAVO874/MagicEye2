@@ -16,6 +16,6 @@ namespace MagicEye2.Services.BackEndAPI.Models.Dto
         public int? IdentificacionConfidence { get; set; }
         public string? Parentesco { get; set; } //mano alzada, lipiar
         public DateTime? C3FechaAtencion { get; set; } // mano alzada, limpiar
-        public string? Pdf { get; set; }
+        public string? Pdf { get; set; } // es la dirección donde se almacenará el pdf en azure
     }
 }

@@ -3,6 +3,7 @@ using MagicEye2.Services.BackEndAPI;
 using MagicEye2.Services.BackEndAPI.Data;
 using MagicEye2.Services.BackEndAPI.Helpers;
 using MagicEye2.Services.BackEndAPI.Services;
+using MagicEye2.Services.BackEndAPI.Services.Storage;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +26,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<FileService>();
 
 builder.Services.AddTransient<IAlmacenadorArchivos, AlmacenadorArchivos>();
+
+builder.Services.AddTransient<ICentralStorage, CentralStorage>();
 
 var app = builder.Build();
 
