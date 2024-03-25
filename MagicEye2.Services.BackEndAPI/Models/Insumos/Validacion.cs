@@ -42,6 +42,7 @@ namespace MagicEye2.Services.BackEndAPI.Models.Insumos
         public DateTime? FechaInicio { get; set; }
         public DateTime? FechaFin { get; set; }
         public string? Observacion { get; set; }
+        public string? Pdf {  get; set; }
 
     }
 }

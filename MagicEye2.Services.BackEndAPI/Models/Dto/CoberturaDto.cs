@@ -13,5 +13,6 @@ namespace MagicEye2.Services.BackEndAPI.Models.Dto
         public string? Nombres { get; set; } //puede ser del padre o madre
         public int? Identificacion { get; set; } //cédula
         public int? IdentificacionConfidence { get; set; }
+        public string? Pdf { get; set; }
     }
 }

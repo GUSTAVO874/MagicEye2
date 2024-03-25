@@ -1,6 +1,7 @@
 using AutoMapper;
 using MagicEye2.Services.BackEndAPI;
 using MagicEye2.Services.BackEndAPI.Data;
+using MagicEye2.Services.BackEndAPI.Helpers;
 using MagicEye2.Services.BackEndAPI.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,6 +23,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<FileService>();
+
+builder.Services.AddTransient<IAlmacenadorArchivos, AlmacenadorArchivos>();
 
 var app = builder.Build();
 
