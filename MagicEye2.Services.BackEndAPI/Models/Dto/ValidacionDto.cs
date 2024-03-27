@@ -36,6 +36,6 @@ namespace MagicEye2.Services.BackEndAPI.Models.Dto
         public int? C11CodTarifarioConfidence { get; set; }
         public DateTime? FechaInicio { get; set; }
         public DateTime? FechaFin { get; set; }
-        public string? Observacion { get; set; }
+        public string? Pdf { get; set; } // es la dirección donde se almacenará el pdf en azure
     }
 }

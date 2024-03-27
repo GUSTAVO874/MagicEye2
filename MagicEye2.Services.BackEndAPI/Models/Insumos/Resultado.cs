@@ -22,7 +22,7 @@ namespace MagicEye2.Services.BackEndAPI.Models.Insumos
         public string? InsumosConfidence { get; set; }
         public string? Conclusiones { get; set; }
         public string? ConclusionesConfidence { get; set; }
-        public string? Pdf {  get; set; }
+        public string? Pdf { get; set; } // es la dirección donde se almacenará el pdf en azure
 
     }
 }

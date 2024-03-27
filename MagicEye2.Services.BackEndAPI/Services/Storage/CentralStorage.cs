@@ -43,7 +43,7 @@ namespace MagicEye2.Services.BackEndAPI.Services.Storage
             }
 
             return files;
-            //throw new NotImplementedException();
+            
         }
 
         public async Task<BlobResponseDto> Upload(IFormFile blob)
