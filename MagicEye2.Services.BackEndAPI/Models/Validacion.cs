@@ -8,6 +8,7 @@
         public string Unidad_A_queDerivan {  get; set; }
         public string C6Nombres { get; set; }
         public int C5Identificacion { get; set; }
+        public int ConfidenceIdentificacion {get; set; }
         public string C4TipoSeguro { get; set; }  
         public int C9Edad {  get; set; }
         public string C7Genero { get; set; }
