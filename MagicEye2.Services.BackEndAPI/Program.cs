@@ -1,4 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using MagicEye2.Services.BackEndAPI.Data;
+
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Agregar el contexto de base de datos
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 // Add services to the container.
 
