@@ -1,7 +1,12 @@
+using MagicEye2.Web.Service.IService;
+using MagicEye2.Web.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IBaseService, BaseService>();
 
 var app = builder.Build();
 

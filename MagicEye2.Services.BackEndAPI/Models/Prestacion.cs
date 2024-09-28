@@ -6,6 +6,6 @@
         public DateOnly Fecha { get; set; }
 
         // Propiedad de navegación para Pacientes
-        public ICollection<Paciente> Pacientes { get; set; }
+        public IEnumerable<Paciente> Pacientes { get; set; }
     }
 }

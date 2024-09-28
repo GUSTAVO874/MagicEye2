@@ -4,6 +4,7 @@ using MagicEye2.Services.BackEndAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MagicEye2.Services.BackEndAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240927002049_yy")]
+    partial class yy
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,21 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("ExpedienteCliente", b =>
+                {
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExpedienteId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ClienteId", "ExpedienteId");
+
+                    b.HasIndex("ExpedienteId");
+
+                    b.ToTable("ExpedienteCliente");
+                });
 
             modelBuilder.Entity("MagicEye2.Services.BackEndAPI.Models.Cliente", b =>
                 {
@@ -47,27 +65,12 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ExpedienteId"));
 
-                    b.Property<DateTime>("Fechaexp")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly>("Fechaexp")
+                        .HasColumnType("date");
 
                     b.HasKey("ExpedienteId");
 
                     b.ToTable("Expedientes");
-                });
-
-            modelBuilder.Entity("MagicEye2.Services.BackEndAPI.Models.ExpedienteCliente", b =>
-                {
-                    b.Property<int>("ExpedienteId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ExpedienteId", "ClienteId");
-
-                    b.HasIndex("ClienteId");
-
-                    b.ToTable("ExpedienteClientes");
                 });
 
             modelBuilder.Entity("MagicEye2.Services.BackEndAPI.Models.Paciente", b =>
@@ -118,23 +121,19 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
                     b.ToTable("PacientePrestacion");
                 });
 
-            modelBuilder.Entity("MagicEye2.Services.BackEndAPI.Models.ExpedienteCliente", b =>
+            modelBuilder.Entity("ExpedienteCliente", b =>
                 {
-                    b.HasOne("MagicEye2.Services.BackEndAPI.Models.Cliente", "Cliente")
-                        .WithMany("ExpedienteClientes")
+                    b.HasOne("MagicEye2.Services.BackEndAPI.Models.Cliente", null)
+                        .WithMany()
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MagicEye2.Services.BackEndAPI.Models.Expediente", "Expediente")
-                        .WithMany("ExpedienteClientes")
+                    b.HasOne("MagicEye2.Services.BackEndAPI.Models.Expediente", null)
+                        .WithMany()
                         .HasForeignKey("ExpedienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Cliente");
-
-                    b.Navigation("Expediente");
                 });
 
             modelBuilder.Entity("PacientePrestacion", b =>
@@ -150,16 +149,6 @@ namespace MagicEye2.Services.BackEndAPI.Migrations
                         .HasForeignKey("PrestacionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("MagicEye2.Services.BackEndAPI.Models.Cliente", b =>
-                {
-                    b.Navigation("ExpedienteClientes");
-                });
-
-            modelBuilder.Entity("MagicEye2.Services.BackEndAPI.Models.Expediente", b =>
-                {
-                    b.Navigation("ExpedienteClientes");
                 });
 #pragma warning restore 612, 618
         }

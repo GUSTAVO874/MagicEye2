@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MagicEye2.Services.BackEndAPI.Data;
+using AutoMapper;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+//registrar servicio automapper
+var config = new MapperConfiguration(cfg => {
+    cfg.AddProfile<MagicEye2.Services.BackEndAPI.MappingConfig>();
+});
+
+IMapper mapper = config.CreateMapper();
+builder.Services.AddSingleton(mapper);
+
+///////////////
 
 // Add services to the container.
 
