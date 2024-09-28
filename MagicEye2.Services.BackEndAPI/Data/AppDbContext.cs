@@ -10,9 +10,6 @@ namespace MagicEye2.Services.BackEndAPI.Data
         { 
 
         }
-        public DbSet<Paciente> Pacientes { get; set; }
-        public DbSet<Prestacion> Prestaciones { get; set; }
-
         public DbSet<Expediente> Expedientes { get; set; }
         public DbSet<Cliente> Clientes{ get; set; }
 
@@ -43,14 +40,7 @@ namespace MagicEye2.Services.BackEndAPI.Data
                 .WithMany(c => c.ExpedienteClientes)
                 .HasForeignKey(ec => ec.ClienteId);
 
-            // Configuración de la relación muchos a muchos
-            modelBuilder.Entity<Paciente>()
-                .HasMany(p => p.Prestaciones)
-                .WithMany(p => p.Pacientes)
-                .UsingEntity<Dictionary<string, object>>(
-                    "PacientePrestacion",  // Nombre de la tabla intermedia
-                    j => j.HasOne<Prestacion>().WithMany().HasForeignKey("PrestacionId"),
-                    j => j.HasOne<Paciente>().WithMany().HasForeignKey("PacienteId"));
+            
 
 
             base.OnModelCreating(modelBuilder);
