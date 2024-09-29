@@ -14,6 +14,11 @@ namespace MagicEye2.Services.BackEndAPI
             
             // //Mapeo de la tabla intermedia
             CreateMap<ExpedienteCliente, ExpedienteClienteDto>().ReverseMap();
+
+            //
+            CreateMap<Paciente, PacienteDto>().ReverseMap();
+            CreateMap<MaestroTBeneficiario, MaestroTBeneficiarioDto>().ReverseMap();
+
         }
         // Si necesitas crear la configuración manualmente, puedes mantener este método estático
         public static MapperConfiguration RegisterMaps()

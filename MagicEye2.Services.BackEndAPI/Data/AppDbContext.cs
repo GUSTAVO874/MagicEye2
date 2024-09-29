@@ -15,6 +15,9 @@ namespace MagicEye2.Services.BackEndAPI.Data
 
         public DbSet<ExpedienteCliente> ExpedienteClientes { get; set; }
 
+        public DbSet<Paciente> Pacientes{ get; set; }
+        public DbSet<MaestroTBeneficiario> MaestroTBeneficiarios{ get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configuración de la relación muchos a muchos Expediente Cliente
@@ -40,7 +43,11 @@ namespace MagicEye2.Services.BackEndAPI.Data
                 .WithMany(c => c.ExpedienteClientes)
                 .HasForeignKey(ec => ec.ClienteId);
 
-            
+            // Relación uno a muchos entre MaestroTBeneficiario y Paciente
+            modelBuilder.Entity<Paciente>()
+                .HasOne(p => p.MaestroTBeneficiario)
+                .WithMany(m => m.Pacientes)
+                .HasForeignKey(p => p.MaestroTBeneficiarioId);
 
 
             base.OnModelCreating(modelBuilder);
