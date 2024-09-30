@@ -7,7 +7,7 @@ using MagicEye2.Services.BackEndAPI.Models;
 
 namespace MagicEye2.Services.BackEndAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/maestrotbeneficiario")]
     [ApiController]
     public class MaestroTBeneficiarioAPIController : ControllerBase
     {

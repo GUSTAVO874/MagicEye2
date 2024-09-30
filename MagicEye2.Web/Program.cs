@@ -1,12 +1,18 @@
 using MagicEye2.Web.Service.IService;
 using MagicEye2.Web.Service;
+using MagicEye2.Web.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddHttpClient();
+builder.Services.AddHttpClient<IMaestroTBeneficiario, MaestroTBeneficiarioService>();
+SD.MaestroTBeneficiarioAPIBase = builder.Configuration["ServiceUrls:MaestroTBeneficiarioAPI"];
 
 builder.Services.AddScoped<IBaseService, BaseService>();
+
 
 var app = builder.Build();
 

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MagicEye2.Services.BackEndAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/paciente")]
     [ApiController]
     public class PacienteAPIController : ControllerBase
     {

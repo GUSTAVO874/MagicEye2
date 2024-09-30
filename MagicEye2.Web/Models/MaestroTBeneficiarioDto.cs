@@ -1,4 +1,4 @@
-﻿namespace MagicEye2.Services.BackEndAPI.Models.Dto
+﻿namespace MagicEye2.Web.Models
 {
     public class MaestroTBeneficiarioDto
     {
