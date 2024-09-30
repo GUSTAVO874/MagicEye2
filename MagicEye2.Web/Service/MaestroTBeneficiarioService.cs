@@ -22,9 +22,13 @@ namespace MagicEye2.Web.Service
             });
         }
 
-        public Task<ResponseDto?> GetAllMaestroTBeneficiariosAsync()
+        public async Task<ResponseDto?> GetAllMaestroTBeneficiariosAsync()
         {
-            throw new NotImplementedException();
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.GET,
+                Url = SD.MaestroTBeneficiarioAPIBase + "/api/maestrotbeneficiario"
+            });
         }
     }
 }
