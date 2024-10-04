@@ -27,7 +27,26 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+// Configurar CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.WithOrigins("https://localhost:7239") // Puerto de mi Blazor WebAssembly
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
+// Agregar servicios al contenedor
+builder.Services.AddControllers();
+
+
 var app = builder.Build();
+
+// Usar CORS
+app.UseCors("CorsPolicy");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

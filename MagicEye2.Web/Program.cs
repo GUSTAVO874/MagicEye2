@@ -8,10 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddHttpClient();
+//quitar línea de abajo luego de probar
 builder.Services.AddHttpClient<IMaestroTBeneficiario, MaestroTBeneficiarioService>();
 SD.MaestroTBeneficiarioAPIBase = builder.Configuration["ServiceUrls:MaestroTBeneficiarioAPI"];
 
 builder.Services.AddScoped<IBaseService, BaseService>();
+builder.Services.AddScoped<IMaestroTBeneficiario, MaestroTBeneficiarioService>();
 
 
 var app = builder.Build();

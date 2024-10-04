@@ -1,0 +1,31 @@
+﻿@page "/"
+@using MagicEye2.RichUI2.Service.IService
+@using MagicEye2.RichUI2.Models
+@using Newtonsoft.Json;
+
+
+@inject IMaestroTBeneficiario MaestroTBeneficiarioService
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        List<MaestroTBeneficiarioDto>? list = new();
+
+        ResponseDto? response = await MaestroTBeneficiarioService.GetAllMaestroTBeneficiariosAsync();
+
+        if (response != null && response.IsSuccess)
+        {
+            list = JsonConvert.DeserializeObject<List<MaestroTBeneficiarioDto>>(Convert.ToString(response.Result));
+        }
+        else
+        {
+            // Manejar el error
+        }
+    }
+}

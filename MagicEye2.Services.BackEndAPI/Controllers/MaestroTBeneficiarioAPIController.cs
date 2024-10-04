@@ -4,6 +4,7 @@ using MagicEye2.Services.BackEndAPI.Data;
 using Microsoft.AspNetCore.Mvc;
 using MagicEye2.Services.BackEndAPI.Models.Dto;
 using MagicEye2.Services.BackEndAPI.Models;
+using static Azure.Core.HttpHeader;
 
 namespace MagicEye2.Services.BackEndAPI.Controllers
 {
@@ -69,5 +70,20 @@ namespace MagicEye2.Services.BackEndAPI.Controllers
                 return _response;
             }
         }
-    }
+		[HttpGet]
+		public ResponseDto Get()
+		{
+			try
+			{
+				IEnumerable<MaestroTBeneficiario> objList = _db.MaestroTBeneficiarios.ToList();
+				_response.Result = _mapper.Map<IEnumerable<MaestroTBeneficiarioDto>>(objList);
+			}
+			catch (Exception ex)
+			{
+				_response.IsSuccess = false;
+				_response.Message = ex.Message;
+			}
+			return _response;
+		}
+	}
 }
