@@ -28,7 +28,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-// Configurar CORS
+// Configurar CORS para que las diferentes instancias se conecten a mis endpoints
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", builder =>
@@ -47,6 +47,8 @@ var app = builder.Build();
 
 // Usar CORS
 app.UseCors("CorsPolicy");
+
+//////////////////////////////////
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
