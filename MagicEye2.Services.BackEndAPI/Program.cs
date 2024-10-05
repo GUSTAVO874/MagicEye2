@@ -2,15 +2,13 @@ using Microsoft.EntityFrameworkCore;
 using MagicEye2.Services.BackEndAPI.Data;
 using AutoMapper;
 
-
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Agregar el contexto de base de datos
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-//registrar servicio automapper
+// Registrar servicio AutoMapper
 var config = new MapperConfiguration(cfg => {
     cfg.AddProfile<MagicEye2.Services.BackEndAPI.MappingConfig>();
 });
@@ -18,39 +16,33 @@ var config = new MapperConfiguration(cfg => {
 IMapper mapper = config.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
-///////////////
-
-// Add services to the container.
-
+// Agregar controladores
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Configurar Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// **Leer los orígenes permitidos desde la configuración**
+var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>();
 
-// Configurar CORS para que las diferentes instancias se conecten a mis endpoints
+// Configurar CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("CorsPolicy", builder =>
+    options.AddPolicy("CorsPolicy", policy =>
     {
-        builder.WithOrigins("https://localhost:7239") // Puerto de mi Blazor WebAssembly
-               .AllowAnyMethod()
-               .AllowAnyHeader();
+        policy.WithOrigins(allowedOrigins)
+              .AllowAnyMethod()
+              .AllowAnyHeader();
     });
 });
-
-// Agregar servicios al contenedor
-builder.Services.AddControllers();
-
 
 var app = builder.Build();
 
 // Usar CORS
 app.UseCors("CorsPolicy");
 
-//////////////////////////////////
-
-// Configure the HTTP request pipeline.
+// Configurar el pipeline de solicitudes HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

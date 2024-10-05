@@ -22,6 +22,7 @@ Welcome to your new app.
         if (response != null && response.IsSuccess)
         {
             list = JsonConvert.DeserializeObject<List<MaestroTBeneficiarioDto>>(Convert.ToString(response.Result));
+            
         }
         else
         {
