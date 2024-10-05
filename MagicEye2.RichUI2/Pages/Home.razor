@@ -18,7 +18,7 @@ Welcome to your new app.
         List<MaestroTBeneficiarioDto>? list = new();
 
         ResponseDto? response = await MaestroTBeneficiarioService.GetAllMaestroTBeneficiariosAsync();
-
+        
         if (response != null && response.IsSuccess)
         {
             list = JsonConvert.DeserializeObject<List<MaestroTBeneficiarioDto>>(Convert.ToString(response.Result));
