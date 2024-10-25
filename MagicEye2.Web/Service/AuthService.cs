@@ -3,7 +3,7 @@ using MagicEye2.Web.Service.IService;
 using MagicEye2.Web.Utility;
 
 namespace MagicEye2.Web.Service
-{
+{//
     public class AuthService : IAuthService
     {
         private readonly IBaseService _baseService;

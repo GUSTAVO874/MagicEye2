@@ -36,7 +36,7 @@ namespace MagicEye2.Services.BackEndAPI.Controllers
                     await transaction.CommitAsync();
                     _response.Result = maestroTBeneficiarioDto;
                 }
-                catch(Exception ex) 
+                catch (Exception ex)
                 {
                     // Si ocurre un error, revertimos todas las operaciones
                     await transaction.RollbackAsync();
@@ -58,7 +58,7 @@ namespace MagicEye2.Services.BackEndAPI.Controllers
                     MaestroTBeneficiario maestroTBeneficiario = _mapper.Map<MaestroTBeneficiario>(maestroTBeneficiarioDto);
                     _db.MaestroTBeneficiarios.Add(maestroTBeneficiario);
                     await _db.SaveChangesAsync();
-                    
+
                     await transaction.CommitAsync();
                     _response.Result = maestroTBeneficiarioDto;
                 }
@@ -72,7 +72,8 @@ namespace MagicEye2.Services.BackEndAPI.Controllers
                 return _response;
             }
         }
-		[HttpGet]
+        [HttpGet]
+        [Authorize(Roles = "CUSTOMER")]
 		public ResponseDto Get()
 		{
 			try
