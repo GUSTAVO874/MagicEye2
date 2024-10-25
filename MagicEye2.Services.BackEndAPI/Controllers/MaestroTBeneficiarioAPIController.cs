@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using MagicEye2.Services.BackEndAPI.Models.Dto;
 using MagicEye2.Services.BackEndAPI.Models;
 using static Azure.Core.HttpHeader;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MagicEye2.Services.BackEndAPI.Controllers
 {
     [Route("api/maestrotbeneficiario")]
     [ApiController]
+    [Authorize]
     public class MaestroTBeneficiarioAPIController : ControllerBase
     {
         private readonly AppDbContext _db;

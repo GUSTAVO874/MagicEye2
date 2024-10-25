@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - MagicEye2.Web</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" />
     <link rel="stylesheet" href="~/MagicEye2.Web.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -31,10 +32,32 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" asp-controller="MaestroTBeneficiario" asp-action="MaestroTBeneficiarioIndex">MaestroTBeneficiario</a></li>
-                                
+
                                 <li><hr class="dropdown-divider"></li>
                             </ul>
+
                         </li>
+
+                    </ul>
+                    <ul class="navbar-nav">
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                                <li class="nav-item">
+                                    <a class="nav-link " asp-controller="Auth" asp-action="Login">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " asp-controller="Auth" asp-action="Register">Register</a>
+                                </li>
+                        }
+                        else
+                        {
+                                <li class="nav-item">
+                                    <a class="nav-link " href="#">Hello @User.Identity.Name</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " asp-controller="Auth" asp-action="Logout">Logout</a>
+                                </li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -43,6 +66,7 @@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
+            <partial name="_Notifications" />
         </main>
     </div>
 
@@ -52,6 +76,7 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @* <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script> *@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

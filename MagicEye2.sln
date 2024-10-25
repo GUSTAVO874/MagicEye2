@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEye2.Web", "MagicEye2.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEye2.RichUI2", "MagicEye2.RichUI2\MagicEye2.RichUI2.csproj", "{A4728F31-DA72-44F7-A7EA-CCF7530FAE0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Services.AuthAPI", "Mango.Services.AuthAPI\Mango.Services.AuthAPI.csproj", "{BADF4947-EF72-47E0-8470-A8AB7F138F33}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicEye2.Services.AuthAPI", "Mango.Services.AuthAPI\MagicEye2.Services.AuthAPI.csproj", "{BADF4947-EF72-47E0-8470-A8AB7F138F33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
