@@ -2,7 +2,9 @@ using MagicEye2.Services.AuthAPI.Data;
 using MagicEye2.Services.AuthAPI.Models;
 using MagicEye2.Services.AuthAPI.Service;
 using MagicEye2.Services.AuthAPI.Service.IService;
+using MagicEye2.Services.AuthAPI.Models.Dto;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +25,24 @@ builder.Services.AddScoped<IAuthService,AuthService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//de chatgpt para validar email
+builder.Services.AddControllers()
+    .ConfigureApiBehaviorOptions(options =>
+    {
+        options.InvalidModelStateResponseFactory = context =>
+        {
+            var errors = context.ModelState.Values.SelectMany(v => v.Errors)
+                                                  .Select(e => e.ErrorMessage);
+            var response = new ResponseDto
+            {
+                IsSuccess = false,
+                Message = string.Join(" | ", errors)
+            };
+            return new BadRequestObjectResult(response);
+        };
+    });
+
 
 var app = builder.Build();
 

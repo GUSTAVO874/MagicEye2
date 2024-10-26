@@ -73,7 +73,7 @@ namespace MagicEye2.Services.BackEndAPI.Controllers
             }
         }
         [HttpGet]
-        [Authorize(Roles = "CUSTOMER")]
+        [Authorize(Roles = "ADMIN")]
 		public ResponseDto Get()
 		{
 			try

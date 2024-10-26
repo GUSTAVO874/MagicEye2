@@ -36,6 +36,28 @@ namespace MagicEye2.Services.AuthAPI.Controllers
             //await _messageBus.PublishMessage(model.Email, _configuration.GetValue<string>("TopicAndQueueNames:RegisterUserQueue"));
             return Ok(_response);
         }
+        //[HttpPost("register")]//de chatgpt el del curso es el código de arriba
+        //public async Task<IActionResult> Register([FromBody] RegistrationRequestDto model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        _response.IsSuccess = false;
+        //        _response.Message = string.Join(" | ", ModelState.Values
+        //                                    .SelectMany(v => v.Errors)
+        //                                    .Select(e => e.ErrorMessage));
+        //        return BadRequest(_response);
+        //    }
+
+        //    var errorMessage = await _authService.Register(model);
+        //    if (!string.IsNullOrEmpty(errorMessage))
+        //    {
+        //        _response.IsSuccess = false;
+        //        _response.Message = errorMessage;
+        //        return BadRequest(_response);
+        //    }
+
+        //    return Ok(_response);
+        //}
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto model)
         {
